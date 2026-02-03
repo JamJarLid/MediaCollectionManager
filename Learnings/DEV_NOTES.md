@@ -6,4 +6,3 @@
 - Why does the program use a while (running) loop instead of recursion or restarting Main?
   - Restarting Main would risk running multiple instances of the Program.
     A recursion would similarly run the program fully, thus not being able to keep it contained on a single thread. 
-
