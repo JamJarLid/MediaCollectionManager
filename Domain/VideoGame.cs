@@ -10,6 +10,12 @@ class VideoGame(string title, string platform, int rating)
         MinimumRating <= rating && rating <= MaximumRating ? 
         rating : throw new InvalidDataException(
             "Invalid rating number: Please choose a number between 1 and 10.");
-    
 
+    public override string ToString()
+    {
+        string title = $"Title: {this.Title}";
+        string platform = $"Platform: {this.Platform}";
+        string rating = $"Rating: {this.Rating}/10";
+        return $"{title}\n{platform}\n{rating}";
+    }
 }

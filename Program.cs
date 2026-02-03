@@ -1,10 +1,16 @@
-﻿namespace MediaCollectionManager;
+﻿using MediaCollectionManager.Domain;
+
+namespace MediaCollectionManager;
 
 class Program
 {
   static void Main(string[] args)
   {
     bool running = true;
+
+    VideoGame GodofWar = new("God of War", "Playstation 2", 8);
+    VideoGame LocoRoco = new("LocoRoco", "Playstation Portable", 6);
+    List<VideoGame> videoGames = [GodofWar, LocoRoco];
 
     while(running)
     {
@@ -26,7 +32,12 @@ class Program
           Pause();
           break;
         case "2":
-          Console.WriteLine("Selected View Video Games (not implemented)");
+          Console.WriteLine("Selected View Video Games");
+          foreach (VideoGame game in videoGames)
+          {
+            Console.WriteLine("------");
+            Console.WriteLine(game.ToString());
+          }
           Pause();
           break;
         case "3":
