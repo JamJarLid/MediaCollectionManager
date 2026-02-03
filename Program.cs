@@ -13,6 +13,7 @@ class Program
       Console.WriteLine("1. Add video game");
       Console.WriteLine("2. View video games");
       Console.WriteLine("3. Exit");
+      Console.WriteLine("4. About");
       Console.WriteLine();
       Console.Write("Choose an option: ");
 
@@ -31,6 +32,10 @@ class Program
         case "3":
           Console.WriteLine("Program exited");
           running = false;
+          break;
+        case "4":
+          Console.WriteLine("This program is designed to track and maintain personal physical media collections");
+          Pause();
           break;
         default:
           Console.WriteLine("Error: Invalid argument");
