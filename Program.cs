@@ -36,7 +36,7 @@ class Program
           foreach (VideoGame game in videoGames)
           {
             Console.WriteLine("------");
-            Console.WriteLine(game.ToString());
+            Console.WriteLine(game);
           }
           Pause();
           break;

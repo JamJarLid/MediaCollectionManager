@@ -8,7 +8,7 @@ class VideoGame(string title, string platform, int rating)
     public string Platform { get; private set; } = platform;
     public int Rating { get; private set; } = 
         MinimumRating <= rating && rating <= MaximumRating ? 
-        rating : throw new InvalidDataException(
+        rating : throw new ArgumentOutOfRangeException(
             "Invalid rating number: Please choose a number between 1 and 10.");
 
     public override string ToString()
