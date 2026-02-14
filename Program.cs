@@ -1,4 +1,6 @@
-﻿using MediaCollectionManager.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using MediaCollectionManager.Domain;
+using MediaCollectionManager.Services;
 
 namespace MediaCollectionManager;
 
@@ -8,9 +10,7 @@ class Program
   {
     bool running = true;
 
-    VideoGame GodofWar = new("God of War", "Playstation 2", 8);
-    VideoGame LocoRoco = new("LocoRoco", "Playstation Portable", 6);
-    List<VideoGame> videoGames = [GodofWar, LocoRoco];
+    GameCollectionService gameCollection = new();
 
     while(running)
     {
@@ -28,16 +28,13 @@ class Program
       switch (input)
       {
         case "1":
-          Console.WriteLine("Selected Add Video Game (not implemented)");
+          Console.WriteLine("Selected Add Video Game");
+          AddGame(gameCollection);
           Pause();
           break;
         case "2":
           Console.WriteLine("Selected View Video Games");
-          foreach (VideoGame game in videoGames)
-          {
-            Console.WriteLine("------");
-            Console.WriteLine(game);
-          }
+          gameCollection.ViewGames();
           Pause();
           break;
         case "3":
@@ -60,5 +57,33 @@ class Program
     Console.WriteLine();
     Console.WriteLine("Press any key to continue...");
     Console.ReadKey();
+  }
+
+  static void AddGame(GameCollectionService gameCollection)
+  {
+    string title = string.Empty;
+    string platform = string.Empty;
+    string ratingString = string.Empty;
+    int rating;
+    bool ratingParseDone = false;
+    do
+    {
+      Console.WriteLine("Please enter the title:");
+      title = Console.ReadLine();
+    } while (string.IsNullOrEmpty(title));
+    do
+    {
+      Console.WriteLine("Please enter the platform:");
+      platform = Console.ReadLine();
+    } while (string.IsNullOrEmpty(platform));
+    do
+    {
+      Console.WriteLine("Please enter your rating (1-10):");
+      ratingString = Console.ReadLine();
+      ratingParseDone= int.TryParse(ratingString, out rating) && rating <= 10 && rating > 0;
+    } while (ratingParseDone);
+
+    VideoGame newGame = new(title, platform, rating);
+    gameCollection.AddGame(newGame);
   }
 }

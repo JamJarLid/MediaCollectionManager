@@ -13,3 +13,10 @@
   - Then the central data for the videogames can be changed at will, like the title.
 - Is this class responsible for behavior or just data?
   - I would say that some behavior can be put in this class, when it is specific behavior that is only relevant to the class instance. 
+### Step 3: Managing a Collection
+- Why is the list private?
+  - The list is private in order to ensure that it can only be altered through the methods in the Service. 
+- Why not return the raw List directly?
+  - The raw list is not stored in a readable way, so you need to iterate over each item and get the readable values from them. 
+- Is this service part of the domain or infrastructure?
+  - Mainly the domain I would say, it creates a necessary object that is part of the data structure, but the methods are also part of the infrastructure.
