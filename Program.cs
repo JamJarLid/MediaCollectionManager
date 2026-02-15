@@ -12,7 +12,7 @@ class Program
 
     GameCollectionService gameCollection = new();
 
-    while(running)
+    while (running)
     {
       Console.Clear();
       Console.WriteLine("---JAMJARLIB MEDIA COLLECTION MANAGER---");
@@ -34,7 +34,7 @@ class Program
           break;
         case "2":
           Console.WriteLine("Selected View Video Games");
-          gameCollection.ViewGames();
+          Console.WriteLine(ViewGames(gameCollection));
           Pause();
           break;
         case "3":
@@ -80,10 +80,26 @@ class Program
     {
       Console.WriteLine("Please enter your rating (1-10):");
       ratingString = Console.ReadLine();
-      ratingParseDone= int.TryParse(ratingString, out rating) && rating <= 10 && rating > 0;
+      ratingParseDone = int.TryParse(ratingString, out rating) && rating <= 10 && rating > 0;
     } while (ratingParseDone);
 
     VideoGame newGame = new(title, platform, rating);
     gameCollection.AddGame(newGame);
+  }
+
+  string ViewGames(GameCollectionService gameCollection)
+  {
+    string info = string.Empty;
+    string[] games = gameCollection.ViewGames();
+    if (games.Length < 1)
+      return "The collection is empty, please add games.";
+    else
+    {
+      foreach (string game in games)
+      {
+        info += $"{game}\n------\n";
+      }
+      return info;
+    }
   }
 }
