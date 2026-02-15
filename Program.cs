@@ -81,7 +81,7 @@ class Program
       Console.WriteLine("Please enter your rating (1-10):");
       ratingString = Console.ReadLine();
       ratingParseDone = int.TryParse(ratingString, out rating) && rating <= 10 && rating > 0;
-    } while (ratingParseDone);
+    } while (!ratingParseDone);
 
     VideoGame newGame = new(title, platform, rating);
     gameCollection.AddGame(newGame);
