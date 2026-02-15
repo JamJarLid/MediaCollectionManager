@@ -27,10 +27,8 @@ class GameCollectionService
         return count;
     }
 
-    public GameCollectionService()
+    public GameCollectionService(List<VideoGame> gameCollection)
     {
-        VideoGame GodofWar = new("God of War", "Playstation 2", 8);
-        VideoGame LocoRoco = new("LocoRoco", "Playstation Portable", 6);
-        GameCollection =[ GodofWar, LocoRoco ];
+        GameCollection = gameCollection;
     }
 }
