@@ -21,10 +21,7 @@ class GameCollectionService
 
     public int CountGames()
     {
-        int count = 0;
-        foreach (VideoGame game in GameCollection)
-            count ++;
-        return count;
+        return GameCollection.Count;
     }
 
     public GameCollectionService(List<VideoGame> gameCollection)
