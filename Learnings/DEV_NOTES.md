@@ -30,7 +30,17 @@
 ### Step 5: Pure Data Service
 - Why is returning domain objects more powerful than strings?
   - Domain objects come with all the properties in their base types, as well as any methods attached to them. This way the frontend can get the data and properly present it.
+  Objects preserve meaning; strings flatten meaning.
 - What’s the difference between exposing data and exposing structure?
-  - Exposing data makes it vulnerable to manipulation, while exposing structure informs the consumer how the data is set up and thought to be used.
+  - Exposing data → letting others read values
+    Exposing structure → letting others control storage
+    You want observation without authority.
 - Why should a service protect its internal collection type?
   - Encapsulation again, the setter allows external code to completely overwrite the existing collection. 
+### Step 6: ReadOnly Exposure
+- Why is shared mutable state dangerous?
+  - It exposes structure, not data. Two owners = unpredictable behavior.
+- What’s the difference between “can read” and “can control”?
+  - Can read means get data for observation, while can control means that the data can be set as well.
+- Why is returning a copy sometimes worse than returning read-only?
+  - Returning a copy is safe — but inefficient and misleading. Read-only interfaces express intent directly.

@@ -11,12 +11,10 @@ class GameCollectionService
         GameCollection.Add(game);
     }
 
-    public List<VideoGame> ViewGames()
+    public IReadOnlyList<VideoGame> GetGames()
     {
-        List<VideoGame> info = GameCollection;
-        return info;
+        return GameCollection;
     }
-
     public int CountGames()
     {
         return GameCollection.Count;
