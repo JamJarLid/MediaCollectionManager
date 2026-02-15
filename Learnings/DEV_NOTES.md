@@ -27,3 +27,10 @@
   - At the lowest level, the domain (correct properties etc.), but other than that the service.
 - What would break if a GUI used your current service?
   - The GUI would only recieve a giant string of the list data, which it would not be able to transform to separate instances of presentable game objects. 
+### Step 5: Pure Data Service
+- Why is returning domain objects more powerful than strings?
+  - Domain objects come with all the properties in their base types, as well as any methods attached to them. This way the frontend can get the data and properly present it.
+- What’s the difference between exposing data and exposing structure?
+  - Exposing data makes it vulnerable to manipulation, while exposing structure informs the consumer how the data is set up and thought to be used.
+- Why should a service protect its internal collection type?
+  - Encapsulation again, the setter allows external code to completely overwrite the existing collection. 

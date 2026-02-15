@@ -91,12 +91,12 @@ class Program
   {
     string info = string.Empty;
     int count  = gameCollection.CountGames();
-    string[] games = gameCollection.ViewGames();
+    List<VideoGame> games = gameCollection.ViewGames();
     if (count < 1)
       return "The collection is empty, please add games.";
     else
     {
-      foreach (string game in games)
+      foreach (VideoGame game in games)
       {
         info += $"{game}\n------\n";
       }

@@ -4,18 +4,16 @@ namespace MediaCollectionManager.Services;
 
 class GameCollectionService
 {
-    private List<VideoGame> GameCollection { get; set; }
+    private List<VideoGame> GameCollection { get; }
 
     public void AddGame(VideoGame game)
     {
         GameCollection.Add(game);
     }
 
-    public string[] ViewGames()
+    public List<VideoGame> ViewGames()
     {
-        string[] info = [];
-        foreach (VideoGame game in GameCollection)
-            info = [.. info, game.ToString()];
+        List<VideoGame> info = GameCollection;
         return info;
     }
 
