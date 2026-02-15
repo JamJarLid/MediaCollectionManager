@@ -10,7 +10,7 @@ class Program
   {
     bool running = true;
 
-    GameCollectionService gameCollection = new();
+    GameCollectionService gameCollection = new(gameCollection: []);
 
     while (running)
     {
