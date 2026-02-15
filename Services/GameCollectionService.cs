@@ -11,11 +11,11 @@ class GameCollectionService
         GameCollection.Add(game);
     }
 
-    public string ViewGames()
+    public string[] ViewGames()
     {
-        string info = string.Empty;
+        string[] info = [];
         foreach (VideoGame game in GameCollection)
-            info += $"{game}\n------\n";
+            info = [.. info, game.ToString()];
         return info;
     }
 
