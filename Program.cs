@@ -90,8 +90,9 @@ class Program
   static string ViewGames(GameCollectionService gameCollection)
   {
     string info = string.Empty;
+    int count  = gameCollection.CountGames();
     string[] games = gameCollection.ViewGames();
-    if (games.Length < 1)
+    if (count < 1)
       return "The collection is empty, please add games.";
     else
     {
