@@ -87,7 +87,7 @@ class Program
     gameCollection.AddGame(newGame);
   }
 
-  string ViewGames(GameCollectionService gameCollection)
+  static string ViewGames(GameCollectionService gameCollection)
   {
     string info = string.Empty;
     string[] games = gameCollection.ViewGames();
