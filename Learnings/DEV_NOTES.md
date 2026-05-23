@@ -44,3 +44,10 @@
   - Can read means get data for observation, while can control means that the data can be set as well.
 - Why is returning a copy sometimes worse than returning read-only?
   - Returning a copy is safe — but inefficient and misleading. Read-only interfaces express intent directly.
+### Step 7: Introduce MediaItem Base Class
+- Why make MediaItem abstract?
+  - MediaItem is a categorization of a certain type of item, not a physical thing itself. We dont want to create an instance of MediaItem, just instances of its child classes.
+- What does inheritance buy us here?
+  - Inheritance buys us security in keeping specific properties safe in the parent class, while also making it easier to add new child classes in the future, especially with a polymorphic service.
+- What would composition look like instead?
+  - Composition would have the MediaItem be the class that was instanced, but with the videogame-specific interfaces attached to it.
