@@ -1,15 +1,8 @@
 namespace MediaCollectionManager.Domain;
 
-class VideoGame(string title, string platform, int rating)
+class VideoGame : MediaItem
 {
-    private const int MinimumRating = 1;
-    private const int MaximumRating = 10;
-    public string Title { get; private set; } = title;
-    public string Platform { get; private set; } = platform;
-    public int Rating { get; private set; } = 
-        MinimumRating <= rating && rating <= MaximumRating ? 
-        rating : throw new ArgumentOutOfRangeException(
-            "Invalid rating number: Please choose a number between 1 and 10.");
+    public string Platform { get; private set; }
 
     public override string ToString()
     {
@@ -17,5 +10,10 @@ class VideoGame(string title, string platform, int rating)
         string platform = $"Platform: {this.Platform}";
         string rating = $"Rating: {this.Rating}/10";
         return $"{title}\n{platform}\n{rating}";
+    }
+
+    public VideoGame(string platform, string title, int rating) : base(title, rating)
+    {
+        Platform = platform;
     }
 }
