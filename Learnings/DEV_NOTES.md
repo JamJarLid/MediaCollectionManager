@@ -48,6 +48,16 @@
 - Why make MediaItem abstract?
   - MediaItem is a categorization of a certain type of item, not a physical thing itself. We dont want to create an instance of MediaItem, just instances of its child classes.
 - What does inheritance buy us here?
-  - Inheritance buys us security in keeping specific properties safe in the parent class, while also making it easier to add new child classes in the future, especially with a polymorphic service.
+  - Inheritance centralizes shared state and behavior in the parent class, while also making it easier to add new child classes in the future, especially with a polymorphic service.
 - What would composition look like instead?
-  - Composition would have the MediaItem be the class that was instanced, but with the videogame-specific interfaces attached to it.
+  - Composition would look more like:
+    ```
+    VideoGame HAS-A Rating
+    VideoGame HAS-A PlatformInfo
+    VideoGame HAS-A MediaMetadata
+    ```
+    instead of:
+    ```
+    VideoGame IS-A MediaItem
+    ```
+  - Composition models assembly. Inheritance models categorization.
