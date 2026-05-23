@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using MediaCollectionManager.Domain;
+﻿using MediaCollectionManager.Domain;
 using MediaCollectionManager.Services;
 
 namespace MediaCollectionManager;
@@ -10,7 +9,7 @@ class Program
   {
     bool running = true;
 
-    GameCollectionService gameCollection = new(gameCollection: []);
+    MediaCollectionService mediaCollection = new(mediaCollection: []);
 
     while (running)
     {
@@ -29,12 +28,12 @@ class Program
       {
         case "1":
           Console.WriteLine("Selected Add Video Game");
-          AddGame(gameCollection);
+          AddGame(mediaCollection);
           Pause();
           break;
         case "2":
           Console.WriteLine("Selected View Video Games");
-          Console.WriteLine(ViewGames(gameCollection));
+          Console.WriteLine(ViewGames(mediaCollection));
           Pause();
           break;
         case "3":
@@ -59,7 +58,7 @@ class Program
     Console.ReadKey();
   }
 
-  static void AddGame(GameCollectionService gameCollection)
+  static void AddGame(MediaCollectionService mediaCollection)
   {
     string title = string.Empty;
     string platform = string.Empty;
@@ -84,21 +83,21 @@ class Program
     } while (!ratingParseDone);
 
     VideoGame newGame = new(title, platform, rating);
-    gameCollection.AddGame(newGame);
+    mediaCollection.AddMediaItem(newGame);
   }
 
-  static string ViewGames(GameCollectionService gameCollection)
+  static string ViewMediaItems(MediaCollectionService mediaCollection)
   {
     string info = string.Empty;
-    int count  = gameCollection.CountGames();
-    IReadOnlyList<VideoGame> games = gameCollection.GetGames();
+    int count  = mediaCollection.CountMediaItems();
+    IReadOnlyList<MediaItem> items = mediaCollection.GetMediaItems();
     if (count < 1)
       return "The collection is empty, please add games.";
     else
     {
-      foreach (VideoGame game in games)
+      foreach (MediaItem item in items)
       {
-        info += $"{game}\n------\n";
+        info += $"{item}\n------\n";
       }
       return info;
     }

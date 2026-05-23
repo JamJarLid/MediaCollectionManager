@@ -2,26 +2,26 @@ using MediaCollectionManager.Domain;
 
 namespace MediaCollectionManager.Services;
 
-class GameCollectionService
+class MediaCollectionService
 {
-    private List<VideoGame> GameCollection { get; }
+    private List<MediaItem> MediaCollection { get; }
 
-    public void AddGame(VideoGame game)
+    public void AddMediaItem(MediaItem mediaItem)
     {
-        GameCollection.Add(game);
+        MediaCollection.Add(mediaItem);
     }
 
-    public IReadOnlyList<VideoGame> GetGames()
+    public IReadOnlyList<MediaItem> GetMediaItems()
     {
-        return GameCollection;
+        return MediaCollection;
     }
-    public int CountGames()
+    public int CountMediaItems()
     {
-        return GameCollection.Count;
+        return MediaCollection.Count;
     }
 
-    public GameCollectionService(List<VideoGame> gameCollection)
+    public MediaCollectionService(List<MediaItem> mediaCollection)
     {
-        GameCollection = gameCollection;
+        MediaCollection = mediaCollection;
     }
 }
