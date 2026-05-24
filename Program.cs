@@ -19,6 +19,7 @@ class Program
       Console.WriteLine("2. View video games");
       Console.WriteLine("3. Exit");
       Console.WriteLine("4. About");
+      Console.WriteLine("5. Add book");
       Console.WriteLine();
       Console.Write("Choose an option: ");
 
@@ -28,12 +29,12 @@ class Program
       {
         case "1":
           Console.WriteLine("Selected Add Video Game");
-          AddGame(mediaCollection);
+          AddMediaItem(mediaCollection, "Game");
           Pause();
           break;
         case "2":
           Console.WriteLine("Selected View Video Games");
-          Console.WriteLine(ViewGames(mediaCollection));
+          Console.WriteLine(ViewMediaItems(mediaCollection));
           Pause();
           break;
         case "3":
@@ -42,6 +43,11 @@ class Program
           break;
         case "4":
           Console.WriteLine("This program is designed to track and maintain personal physical media collections");
+          Pause();
+          break;
+        case "5":
+          Console.WriteLine("Selected Add Book");
+          AddMediaItem(mediaCollection, "Book");
           Pause();
           break;
         default:
@@ -58,13 +64,40 @@ class Program
     Console.ReadKey();
   }
 
-  static void AddGame(MediaCollectionService mediaCollection)
+  static void AddMediaItem(MediaCollectionService mediaCollection, string type)
   {
     string title = string.Empty;
+    int rating = -1;
     string platform = string.Empty;
+    string author = string.Empty;
+    int pageCount = 0;
+    string pageCountString = string.Empty;
     string ratingString = string.Empty;
-    int rating;
     bool ratingParseDone = false;
+
+    //I wanted to use the class as condition, but I wasnt sure how
+    if (type == "Game")
+    {
+      do
+      {
+        Console.WriteLine("Please enter the platform:");
+        platform = Console.ReadLine();
+      } while (string.IsNullOrEmpty(platform));
+    }
+    if (type == "Book")
+    {
+      do
+      {
+        Console.WriteLine("Please enter the author:");
+        author = Console.ReadLine();
+      } while (string.IsNullOrEmpty(author));
+      do
+      {
+        Console.WriteLine("Please enter the page count:");
+        pageCountString = Console.ReadLine();
+        pageCount = int.Parse(pageCountString);
+      } while (pageCount > 0);
+    }
     do
     {
       Console.WriteLine("Please enter the title:");
@@ -72,18 +105,21 @@ class Program
     } while (string.IsNullOrEmpty(title));
     do
     {
-      Console.WriteLine("Please enter the platform:");
-      platform = Console.ReadLine();
-    } while (string.IsNullOrEmpty(platform));
-    do
-    {
       Console.WriteLine("Please enter your rating (1-10):");
       ratingString = Console.ReadLine();
       ratingParseDone = int.TryParse(ratingString, out rating) && rating <= 10 && rating > 0;
     } while (!ratingParseDone);
 
-    VideoGame newGame = new(title, platform, rating);
-    mediaCollection.AddMediaItem(newGame);
+    if(type == "Game")
+    {
+      VideoGame newGame = new(platform: platform, title: title, rating: rating);
+      mediaCollection.AddMediaItem(newGame);
+    }
+    if (type == "Book")
+    {
+      Book newBook = new(author: author, pageCount: pageCount, title: title, rating: rating);
+      mediaCollection.AddMediaItem(newBook);
+    }
   }
 
   static string ViewMediaItems(MediaCollectionService mediaCollection)

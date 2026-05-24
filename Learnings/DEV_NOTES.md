@@ -61,3 +61,15 @@
     VideoGame IS-A MediaItem
     ```
   - Composition models assembly. Inheritance models categorization.
+### Step 8: Real Polymorphism
+- What problem does polymorphism solve here?
+  - Polymorphism allows us to use the same method for presenting and transforming multiple class types, thus reducing duplication.
+  - Code stops caring about concrete types.
+- Why is removing casts important?
+  - Casts can cause errors when not following the item structure exactly, creating more fragile code. 
+  - Casts reveal abstraction failure.
+- When might inheritance become the wrong choice?
+  - When an object gets too different, and doesn't share any common traits with the other children. 
+  - Shared behavior is artificial
+  - Child types diverge heavily
+  - Hierarchy becomes rigid
