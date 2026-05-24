@@ -73,3 +73,10 @@
   - Shared behavior is artificial
   - Child types diverge heavily
   - Hierarchy becomes rigid
+### Step 9: Refactor Object Creation
+- Why do large methods become dangerous?
+  - Large methods that have too many responsibilities become harder to maintain, and are less debug-friendly. It is also easier to get into the habit of patching edge-cases, and then having to work around them. 
+- What duplication is worth removing vs acceptable?
+  - Exact duplication, like title and rating in this instance are worth extracting because we determined they will always be present in the objects. When it isn't an exact duplication, extaction is more risky.
+- What’s the difference between abstraction and over-engineering?
+  - Essentially, if the solution fits easily and makes the code feel more streamlined, it's good abstraction. If the solution feels hamfisted or forced, it's probably over-engineered.
