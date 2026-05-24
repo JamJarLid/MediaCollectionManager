@@ -75,8 +75,8 @@ class Program
       platform = Console.ReadLine();
     } while (string.IsNullOrEmpty(platform));
 
-    string title = AddTitle();
-    int rating = AddRating();
+    string title = InsertTitle();
+    int rating = InsertRating();
 
     VideoGame newGame = new(platform: platform, title: title, rating: rating);
     mediaCollection.AddMediaItem(newGame);
@@ -87,6 +87,7 @@ class Program
     string author = string.Empty;
     int pageCount = 0;
     string pageCountString = string.Empty;
+    bool pageCountParsed = false;
 
     do
     {
@@ -97,17 +98,17 @@ class Program
     {
       Console.WriteLine("Please enter the page count:");
       pageCountString = Console.ReadLine();
-      pageCount = int.Parse(pageCountString);
-    } while (pageCount <= 0);
+      pageCountParsed = int.TryParse(pageCountString, out pageCount) && pageCount <= 0;
+    } while (!pageCountParsed);
 
-    string title = AddTitle();
-    int rating = AddRating();
+    string title = InsertTitle();
+    int rating = InsertRating();
 
     Book newBook = new(author: author, pageCount: pageCount, title: title, rating: rating);
     mediaCollection.AddMediaItem(newBook);
   }
 
-  static int AddRating()
+  static int InsertRating()
   {
     int rating = -1;
     string ratingString = string.Empty;
@@ -123,7 +124,7 @@ class Program
     return rating;
   }
 
-  static string AddTitle()
+  static string InsertTitle()
   {
     string title = string.Empty;
     do
